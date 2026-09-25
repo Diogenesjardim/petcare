@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), ui-sans-serif,
+    system-ui, sans-serif;
+
+  /* Neutrals */
+  --color-cream: #f7f6f1;
+  --color-paper: #fdfdfb;
+  --color-ink: #182019;
+  --color-ink-soft: #55665b;
+  --color-ink-faint: #8a978d;
+  --color-line: #e7e9e2;
+  --color-line-strong: #d8dcd0;
+
+  /* Warm accent, used rarely */
+  --color-sand: #f4ead4;
+  --color-sand-ink: #9a6a1f;
+
+  /* Brand green scale */
+  --color-forest-50: #eef6f0;
+  --color-forest-100: #d9ecdf;
+  --color-forest-200: #b5dac0;
+  --color-forest-300: #86c19a;
+  --color-forest-400: #52a06f;
+  --color-forest-500: #2f8850;
+  --color-forest-600: #1f7a3a;
+  --color-forest-700: #196531;
+  --color-forest-800: #154f28;
+  --color-forest-900: #0f3d1f;
+  --color-forest-950: #082a15;
+
+  /* Radii */
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+
+  /* Elevation, low and green tinted */
+  --shadow-soft: 0 1px 2px rgba(15, 61, 31, 0.04),
+    0 12px 28px -14px rgba(15, 61, 31, 0.16);
+  --shadow-lift: 0 2px 6px rgba(15, 61, 31, 0.06),
+    0 26px 50px -22px rgba(15, 61, 31, 0.24);
+
+  /* Motion */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv05", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-forest-200);
+    color: var(--color-forest-900);
+  }
+}
+
+@layer components {
+  .u-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease-soft), transform 0.6s var(--ease-soft);
+    will-change: opacity, transform;
+  }
+
+  .u-reveal[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Pure CSS entrance for above-the-fold content. Content stays visible even
+     if the animation never runs, so it is safe without JavaScript. */
+  .u-rise {
+    animation: u-rise 0.7s var(--ease-soft) both;
+  }
+
+  @keyframes u-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .u-paw-field {
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(15, 61, 31, 0.055) 1px,
+        transparent 0
+      );
+    background-size: 22px 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .u-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .u-rise {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
