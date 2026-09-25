@@ -2,12 +2,13 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
+import { assetPath } from "@/lib/asset-path";
 
 export function FinalCta() {
   return (
     <section className="relative overflow-hidden bg-forest-900 text-white">
       <Image
-        src="/images/gallery/g6.jpg"
+        src={assetPath("/images/gallery/g6.jpg")}
         alt=""
         fill
         aria-hidden="true"

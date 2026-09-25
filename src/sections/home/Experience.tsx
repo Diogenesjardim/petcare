@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { experienceStages } from "@/data/home";
+import { assetPath } from "@/lib/asset-path";
 
 export function Experience() {
   return (
@@ -27,7 +28,7 @@ export function Experience() {
                 {stage.label}
               </Badge>
               <Image
-                src={stage.image}
+                src={assetPath(stage.image)}
                 alt={stage.imageAlt}
                 width={480}
                 height={1185}

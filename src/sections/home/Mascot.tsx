@@ -3,6 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { PawHeartMark } from "@/components/Logo";
 import { Icon } from "@/components/ui/Icon";
+import { assetPath } from "@/lib/asset-path";
 
 const mascotTraits = ["Alegria", "Confiança", "Carinho", "Muito amor pelos animais"];
 
@@ -13,7 +14,7 @@ export function Mascot() {
         <Reveal className="relative order-1 mx-auto w-full max-w-sm lg:mx-0">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-forest-100 shadow-lift ring-1 ring-black/5">
             <Image
-              src="/images/mascot-marshmallow.jpg"
+              src={assetPath("/images/mascot-marshmallow.jpg")}
               alt="Retrato de Marshmallow, um Spitz Alemão branco usando uma bandana verde da PetCare."
               fill
               sizes="(min-width: 1024px) 30vw, 90vw"

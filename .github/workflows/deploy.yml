@@ -41,7 +41,10 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         env:
-          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
+          # Computed directly from the repo name instead of trusting
+          # configure-pages's output, which can race the API call that
+          # enables Pages on a brand-new repo and come back empty.
+          PAGES_BASE_PATH: /${{ github.event.repository.name }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

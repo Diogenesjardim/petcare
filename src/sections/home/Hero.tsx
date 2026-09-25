@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { heroTrustPoints } from "@/data/home";
+import { assetPath } from "@/lib/asset-path";
 
 export function Hero() {
   return (
@@ -74,7 +75,7 @@ export function Hero() {
         >
           <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] bg-forest-100 shadow-lift ring-1 ring-black/5">
             <Image
-              src="/images/hero-marshmallow.jpg"
+              src={assetPath("/images/hero-marshmallow.jpg")}
               alt="Marshmallow, um Spitz Alemão branco, correndo feliz por um parque ao entardecer."
               fill
               priority

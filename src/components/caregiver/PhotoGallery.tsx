@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset-path";
 
 interface PhotoGalleryProps {
   photos: { src: string; alt: string }[];
@@ -13,7 +14,7 @@ export function PhotoGallery({ photos }: PhotoGalleryProps) {
           className="relative aspect-square overflow-hidden rounded-xl bg-forest-100"
         >
           <Image
-            src={photo.src}
+            src={assetPath(photo.src)}
             alt={photo.alt}
             fill
             sizes="(min-width: 1024px) 15vw, (min-width: 640px) 22vw, 45vw"
