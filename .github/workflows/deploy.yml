@@ -17,6 +17,11 @@ concurrency:
 
 jobs:
   build:
+    # This workflow file is shared with the InovaSix/pet-plaforma mirror,
+    # which is still in development and must not auto-publish. Only the
+    # personal repo actually builds/deploys; elsewhere the job just skips
+    # (shows as a neutral "skipped" check, not a failure).
+    if: github.repository == 'Diogenesjardim/petcare'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,6 +57,7 @@ jobs:
           path: ./out
 
   deploy:
+    if: github.repository == 'Diogenesjardim/petcare'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
